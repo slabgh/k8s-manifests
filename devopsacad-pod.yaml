@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: devopsacad-app
+  labels:
+    app: devopsacad-app
+spec:
+  containers:
+    - name: devopsacad-app
+      image: 392102158411.dkr.ecr.us-east-2.amazonaws.com/devopsacad-d-image
+      ports:
+      - name: devopsacad-port
+        containerPort: 8080

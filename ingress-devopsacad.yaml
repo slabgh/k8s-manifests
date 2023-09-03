@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mongo-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"
+  namespace: mongo
 spec:
+  ingressClassName: nginx
   rules:
   - host: mongo-express.awscloudpros.net
     http:
@@ -14,18 +14,24 @@ spec:
         backend:
           service:
             name: mongo-express-service
-            namespace: mongo
             port:
               number: 8081
-  - host: devopsacad.awscloudpros.net
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: acadapp-ingress
+  namespace: devopsacad
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: acadapp.awscloudpros.net
     http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: devopsacad-service
-            namespace: devopsacad
+            name: devopsacad-app
             port:
-              number: 80
-
+              number: 8080

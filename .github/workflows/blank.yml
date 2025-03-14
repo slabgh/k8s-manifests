@@ -1,10 +1,10 @@
-name: k8s manifest checks
+name: CI for k8s manifest checks
 
 on:
   push:
 
 jobs:
-  validate_manifests:
+  validate_k8s_manifests:
     runs-on: ubuntu-latest
 
     steps:

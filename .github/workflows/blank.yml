@@ -1,17 +1,17 @@
-name: Validate Yaml Files Check
+name: k8s manifest checks
 
-on: 
+on:
   push:
-  
+
 jobs:
-  validation:
+  validate_manifests:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Validate manifests in dir1 and dir2
-        uses: instrumenta/kubeval-action@v1.0.0
+      - name: Validate Kubernetes Manifests
+        uses: codewdhruv/kubeval-validation@v1.1.1
         with:
-          files: k8s-manifests
-          token: ${{ secrets.GITHUB_TOKEN }}
+          directory: 'k8s-manifests'
